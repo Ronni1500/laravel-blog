@@ -21,7 +21,6 @@
             <li><a href="#">April 2013</a></li>
         </ol>
     </div>
-
     <div class="p-4">
         <h4 class="font-italic">Elsewhere</h4>
         <ol class="list-unstyled">
