@@ -1,7 +1,4 @@
 @section('sidebar')
-    @foreach($menuitems as $item)
-        {{$item->title}}
-    @endforeach
     <header class="blog-header py-3">
         <div class="row flex-nowrap justify-content-between align-items-center">
             <div class="col-4 pt-1">
@@ -41,13 +38,9 @@
     </header>
     <div class="nav-scroller py-1 mb-2">
         <nav class="nav d-flex justify-content-between">
-            <a class="p-2 text-muted" href="#">Лента</a>
-            <a class="p-2 text-muted" href="#">Рубрики</a>
-            <a class="p-2 text-muted" href="#">Темы</a>
-            <a class="p-2 text-muted" href="#">Языки</a>
-            <a class="p-2 text-muted" href="#">Бренды</a>
-            <a class="p-2 text-muted" href="#">Работы</a>
-            <a class="p-2 text-muted" href="#">События и курсы</a>
+            @foreach($menuitems as $item)
+                <a class="p-2 text-muted" href="/blog/{{$item->slug}}">{{$item->title}}</a>
+            @endforeach
         </nav>
     </div>
 @show

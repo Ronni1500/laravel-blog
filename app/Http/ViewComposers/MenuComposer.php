@@ -17,11 +17,11 @@ class MenuComposer
      * @param  View  $view
      * @return void
      */
-    private function getCategries(){
-        return BlogCategory::all();
+    private function getCategories(){
+        return BlogCategory::where(['parent_id' => '1'])->get();
     }
     public function compose(View $view)
     {
-        return $view->with('menuitems', $this->getCategries());
+        return $view->with('menuitems', $this->getCategories());
     }
 }
