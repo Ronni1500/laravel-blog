@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Blog;
 
 use App\Models\BlogPost;
+use App\Repositories\BlogPostRepository;
 use Illuminate\Http\Request;
 
 class PostController extends BaseController
@@ -45,9 +46,10 @@ class PostController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug, BlogPostRepository $post)
     {
-        //
+        $post = $post->getPost($slug);
+        return view('posts.detail', compact('post'));
     }
 
     /**

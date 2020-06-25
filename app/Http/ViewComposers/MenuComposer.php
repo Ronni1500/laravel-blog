@@ -12,6 +12,12 @@ class MenuComposer
         'главная',
         'О нас',
     ];
+    private $blogCategoryRepository;
+
+    public function __construct()
+    {
+        $this->blogCategoryRepository = app(BlogCategoryRepository::class);
+    }
     /**
      * Bind data to the view.
      *
@@ -22,12 +28,7 @@ class MenuComposer
         return BlogCategory::where(['parent_id' => '1'])->get();
     }
 
-    private $blogCategoryRepository;
 
-    public function __construct()
-    {
-        $this->blogCategoryRepository = app(BlogCategoryRepository::class);
-    }
     public function compose(View $view)
     {
         $items = $this->blogCategoryRepository->getForMenu();

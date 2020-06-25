@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Blog;
 
+use App\Repositories\BlogPostRepository;
 use Illuminate\Http\Request;
 
 class CategoryController extends BaseController
@@ -43,9 +44,12 @@ class CategoryController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug, BlogPostRepository $post)
     {
         //
+        //
+        $items = $post->getConcretecategoryPosts($slug);
+        return view('posts.index', compact('items'));
     }
 
     /**

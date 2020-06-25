@@ -9,6 +9,7 @@ use App\Models\BlogCategory as Model;
 class BlogCategoryRepository extends CoreRepository
 {
 
+
     protected function getModelClass()
     {
         return Model::class;
@@ -23,6 +24,15 @@ class BlogCategoryRepository extends CoreRepository
         return $this->startConditions()->all();
     }
 
+    public function getIdCategoryOnSlug($slug): int
+    {
+        $result = $this->startConditions()
+            ->where(['slug' => $slug])
+            ->selectRaw('id')
+            ->toBase()
+            ->get();
+        return $result->first()->id;
+    }
     public function getForMenu()
     {
         $columns = implode(',',['title', 'slug']);

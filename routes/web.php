@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 Route::group(['namespace' => 'Blog', 'prefix' => 'blog'], function () {
     Route::resource('posts', 'PostController')->names('blog.posts');
+    Route::resource('tag', 'CategoryController')->names('blog.category');
 });
 
 Auth::routes();
