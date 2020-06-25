@@ -3,6 +3,7 @@
 namespace App\Http\ViewComposers;
 
 use App\Models\BlogCategory;
+use App\Repositories\BlogCategoryRepository;
 use Illuminate\View\View;
 
 class MenuComposer
@@ -20,8 +21,16 @@ class MenuComposer
     private function getCategories(){
         return BlogCategory::where(['parent_id' => '1'])->get();
     }
+
+    private $blogCategoryRepository;
+
+    public function __construct()
+    {
+        $this->blogCategoryRepository = app(BlogCategoryRepository::class);
+    }
     public function compose(View $view)
     {
-        return $view->with('menuitems', $this->getCategories());
+        $items = $this->blogCategoryRepository->getForMenu();
+        return $view->with('menuitems', $items);
     }
 }

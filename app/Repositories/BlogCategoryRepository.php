@@ -8,6 +8,7 @@ use App\Models\BlogCategory as Model;
 
 class BlogCategoryRepository extends CoreRepository
 {
+
     protected function getModelClass()
     {
         return Model::class;
@@ -20,5 +21,18 @@ class BlogCategoryRepository extends CoreRepository
     public function getComboBox()
     {
         return $this->startConditions()->all();
+    }
+
+    public function getForMenu()
+    {
+        $columns = implode(',',['title', 'slug']);
+
+        $items = $this->startConditions()
+            ->where(['parent_id' => '1'])
+            ->selectRaw($columns)
+            ->toBase()
+            ->get();
+
+        return $items;
     }
 }
