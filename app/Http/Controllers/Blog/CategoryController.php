@@ -14,7 +14,7 @@ class CategoryController extends BaseController
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -48,7 +48,7 @@ class CategoryController extends BaseController
     {
         //
         //
-        $items = $post->getConcretecategoryPosts($slug);
+        $items = $post->getConcretecategoryPosts($slug, 10);
         return view('posts.index', compact('items'));
     }
 

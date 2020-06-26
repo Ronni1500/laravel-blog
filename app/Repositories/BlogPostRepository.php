@@ -19,14 +19,13 @@ class BlogPostRepository extends CoreRepository
         return Model::class;
     }
 
-    public function getConcretecategoryPosts($slug) {
-
+    public function getConcretecategoryPosts($slug, $countsOnPage = 0) {
         $idCategory = $this->blogCategoryRepository
             ->getIdCategoryOnSlug($slug);
 
         $items = $this->startConditions()
             ->where(['category_id' => $idCategory])
-            ->get();
+            ->paginate($countsOnPage);
         return $items;
     }
 

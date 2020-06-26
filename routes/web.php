@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', 'Blog\PostController@index')->name('main');
 
 Route::group(['namespace' => 'Blog', 'prefix' => 'blog'], function () {
     Route::resource('posts', 'PostController')->names('blog.posts');

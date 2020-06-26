@@ -12,4 +12,5 @@
             </div>
         </div><!-- /.blog-post -->
     @endforeach
+    {{ $items->render() }}
 @endsection
