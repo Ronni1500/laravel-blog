@@ -2,6 +2,7 @@
 namespace App\Repositories;
 
 use App\Models\BlogPost as Model;
+use Carbon\Carbon;
 
 class BlogPostRepository extends CoreRepository
 {
@@ -35,5 +36,29 @@ class BlogPostRepository extends CoreRepository
             ->where(['slug' => $slug])
             ->get()->first();
         return $items;
+    }
+
+    public function listMonthArchivePosts()
+    {
+        $items = $this->startConditions()
+            ->where('is_published' ,'1')
+            ->selectRaw('created_at')
+            ->toBase()
+            ->get();
+        $timestamp = strtotime($items[0]->created_at);
+        $result = [];
+        foreach ($items as $item) {
+            $tpm_timestamp = strtotime($item->created_at);
+            $year = date('Y', $tpm_timestamp);
+            $month = date('m', $tpm_timestamp);
+            if(!key_exists($year, $result)){
+                $result[$year] = [];
+            } else {
+                if(!in_array($month, $result[$year])) {
+                    $result[$year][] = $month;
+                }
+            }
+        }
+        return $result;
     }
 }

@@ -8,10 +8,6 @@ use Illuminate\View\View;
 
 class MenuComposer
 {
-    private $items = [
-        'главная',
-        'О нас',
-    ];
     private $blogCategoryRepository;
 
     public function __construct()
