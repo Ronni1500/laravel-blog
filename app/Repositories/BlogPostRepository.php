@@ -4,22 +4,40 @@ namespace App\Repositories;
 use App\Models\BlogPost as Model;
 use Carbon\Carbon;
 
+/**
+ * Class BlogPostRepository
+ * @package App\Repositories
+ */
 class BlogPostRepository extends CoreRepository
 {
+    /**
+     * @var \Illuminate\Contracts\Foundation\Application|mixed
+     */
     private $blogCategoryRepository;
 
+    /**
+     * BlogPostRepository constructor.
+     */
     public function __construct()
     {
         parent::__construct();
         $this->blogCategoryRepository = app(BlogCategoryRepository::class);
     }
 
+    /**
+     * @return string
+     */
     public function getModelClass()
     {
         // TODO: Implement getModelClass() method.
         return Model::class;
     }
 
+    /**
+     * @param $slug
+     * @param int $countsOnPage
+     * @return mixed
+     */
     public function getConcretecategoryPosts($slug, $countsOnPage = 0) {
         $idCategory = $this->blogCategoryRepository
             ->getIdCategoryOnSlug($slug);
@@ -30,6 +48,11 @@ class BlogPostRepository extends CoreRepository
         return $items;
     }
 
+
+    /**
+     * @param $slug
+     * @return mixed
+     */
     public function getPost($slug)
     {
         $items = $this->startConditions()
@@ -38,6 +61,9 @@ class BlogPostRepository extends CoreRepository
         return $items;
     }
 
+    /**
+     * @return array
+     */
     public function listMonthArchivePosts()
     {
         $items = $this->startConditions()
