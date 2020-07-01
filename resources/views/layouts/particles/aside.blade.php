@@ -9,7 +9,7 @@
         <ol class="list-unstyled mb-0">
             @foreach($list_archive as $year => $month)
                 @foreach($month as $item)
-                    <li><a href="#">{{ $item }}.{{$year }}</a></li>
+                    <li><a href="{{ route('archive',['date' => $year . '-' . $item]) }}">{{ $item }}.{{ $year }}</a></li>
                 @endforeach
             @endforeach
         </ol>

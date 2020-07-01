@@ -39,7 +39,7 @@
     <div class="nav-scroller py-1 mb-2">
         <nav class="nav d-flex justify-content-between">
             @foreach($menuitems as $item)
-                <a class="p-2 text-muted" href="/blog/tag/{{$item->slug}}">{{$item->title}}</a>
+                <a class="p-2 text-muted" href="/tag/{{$item->slug}}">{{$item->title}}</a>
             @endforeach
         </nav>
     </div>

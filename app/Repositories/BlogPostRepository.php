@@ -1,6 +1,7 @@
 <?php
 namespace App\Repositories;
 
+use App\Models\BlogPost;
 use App\Models\BlogPost as Model;
 use Carbon\Carbon;
 
@@ -86,5 +87,13 @@ class BlogPostRepository extends CoreRepository
             }
         }
         return $result;
+    }
+
+    public function getArhivePost($data)
+    {
+        $items = $this->startConditions()
+            ->where('created_at', 'like', $data . '%')
+            ->paginate(BlogPost::PAGINATION);
+        return $items;
     }
 }

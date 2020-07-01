@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,13 +10,19 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', 'Blog\PostController@index')->name('main');
 
-Route::group(['namespace' => 'Blog', 'prefix' => 'blog'], function () {
-    Route::resource('posts', 'PostController')->names('blog.posts');
-    Route::resource('tag', 'CategoryController')->names('blog.category');
+Route::get('post/{slug}','Blog\PostController@show')->name('post');
+Route::get('archive/{date}','Blog\PostController@archive')->name('archive');
+
+Route::group(['namespace' => 'Blog', 'prefix' => 'tag'],function () {
+    Route::get('{slug}', 'CategoryController@show');
 });
+
+//Route::group(['namespace' => 'Blog', 'prefix' => 'admin\blog'], function () {
+////    Route::resource('posts', 'PostController')->names('blog.posts');
+////    Route::resource('tag', 'CategoryController')->names('blog.category');
+////});
 
 Auth::routes();
 

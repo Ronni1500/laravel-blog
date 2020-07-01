@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class BlogPost extends Model
 {
-
+    const PAGINATION = 15;
 }
