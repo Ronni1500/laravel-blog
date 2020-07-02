@@ -59,7 +59,6 @@ class BlogPostRepository extends CoreRepository
     {
         $items = $this->startConditions()
             ->where(['slug' => $slug])
-            ->with('user:id,name')
             ->get()->first();
         return $items;
     }

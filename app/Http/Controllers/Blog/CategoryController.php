@@ -18,7 +18,7 @@ class CategoryController extends BaseController
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show($slug, BlogPostRepository $post) {
-        $items = $post->getConcretecategoryPosts($slug, 10);
-        return view('posts.index', compact('items'));
+        $posts = $post->getConcretecategoryPosts($slug, 10);
+        return view('posts.index', compact('posts'));
     }
 }
