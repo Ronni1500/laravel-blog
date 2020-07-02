@@ -45,6 +45,7 @@ class BlogPostRepository extends CoreRepository
 
         $items = $this->startConditions()
             ->where(['category_id' => $idCategory])
+            ->with('user:id,name')
             ->paginate($countsOnPage);
         return $items;
     }
@@ -58,6 +59,7 @@ class BlogPostRepository extends CoreRepository
     {
         $items = $this->startConditions()
             ->where(['slug' => $slug])
+            ->with('user:id,name')
             ->get()->first();
         return $items;
     }
@@ -93,6 +95,7 @@ class BlogPostRepository extends CoreRepository
     {
         $items = $this->startConditions()
             ->where('created_at', 'like', $data . '%')
+            ->with('user:id,name')
             ->paginate(BlogPost::PAGINATION);
         return $items;
     }
