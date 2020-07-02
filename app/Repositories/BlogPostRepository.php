@@ -72,14 +72,14 @@ class BlogPostRepository extends CoreRepository
             ->selectRaw('created_at')
             ->toBase()
             ->get();
-        $timestamp = strtotime($items[0]->created_at);
         $result = [];
         foreach ($items as $item) {
             $tpm_timestamp = strtotime($item->created_at);
             $year = date('Y', $tpm_timestamp);
             $month = date('m', $tpm_timestamp);
+
             if(!key_exists($year, $result)){
-                $result[$year] = [];
+                $result[$year] = [$month];
             } else {
                 if(!in_array($month, $result[$year])) {
                     $result[$year][] = $month;
