@@ -12,8 +12,8 @@ class PostController extends BaseController
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index(){
-        $posts = BlogPost::paginate(10);
+    public function index(Request $request){
+        $posts = BlogPost::search($request->input('q'))->paginate(10);
         return view('posts.index', compact('posts'));
     }
 
