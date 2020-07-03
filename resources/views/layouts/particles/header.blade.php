@@ -8,9 +8,21 @@
                 <a class="blog-header-logo text-dark" href="/">Gister</a>
             </div>
             <div class="col-4 d-flex justify-content-end align-items-center">
-                <a class="text-muted" href="#" aria-label="Search">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-3" role="img" viewBox="0 0 24 24" focusable="false"><title>Search</title><circle cx="10.5" cy="10.5" r="7.5"/><path d="M21 21l-5.2-5.2"/></svg>
-                </a>
+                <form method="GET" action="{{ route('main') }}" class="header-search">
+                    <input type="text" name="q" placeholder="Поиск">
+                    <button type="submit" class="header-search__btn">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                             width="20"
+                             height="20"
+                             fill="none"
+                             stroke="currentColor"
+                             stroke-linecap="round"
+                             stroke-linejoin="round"
+                             stroke-width="2"
+                             role="img"
+                             viewBox="0 0 24 24" focusable="false"><title>Search</title><circle cx="10.5" cy="10.5" r="7.5"/><path d="M21 21l-5.2-5.2"/></svg>
+                    </button>
+                </form>
                 @guest
                     @if (Route::has('register'))
                         <a class="btn btn-sm btn-outline-secondary header-btn__register" href="{{ route('register') }}">Регистрация</a>
