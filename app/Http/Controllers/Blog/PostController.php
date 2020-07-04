@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Blog;
 
-use App\Http\Controllers\Blog\BaseController;
 use App\Models\BlogPost;
 use App\Repositories\BlogPostRepository;
 use Illuminate\Http\Request;

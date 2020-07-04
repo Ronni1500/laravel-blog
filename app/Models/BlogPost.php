@@ -14,10 +14,15 @@ class BlogPost extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function comment()
+    {
+        return $this->hasMany(BlogComment::class,'post_id','id');
+    }
     public function scopeSearch(Builder $query, ?string $search)
     {
         if($search) {
             return $query->where('title', 'LIKE', "%{$search}%");
         }
     }
+
 }

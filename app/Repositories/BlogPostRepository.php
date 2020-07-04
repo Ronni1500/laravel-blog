@@ -59,6 +59,7 @@ class BlogPostRepository extends CoreRepository
     {
         $items = $this->startConditions()
             ->where(['slug' => $slug])
+            ->with('comment')
             ->get()->first();
         $this->addViews($items->id);
         return $items;

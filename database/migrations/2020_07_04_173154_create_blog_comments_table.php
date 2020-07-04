@@ -15,7 +15,7 @@ class CreateBlogCommentsTable extends Migration
     {
         Schema::create('blog_comments', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('text')->nullable();
+            $table->text('text')->nullable();
             $table->string('name')->nullable();
             $table->integer('post_id')->nullable();
             $table->timestamps();

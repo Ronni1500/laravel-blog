@@ -10,11 +10,12 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', 'Blog\PostController@index')->name('main');
-
-Route::get('post/{slug}','Blog\PostController@show')->name('post');
-Route::get('archive/{date}','Blog\PostController@archive')->name('archive');
-Route::resource('comment', 'Blog\BlogCommentController')->only(['create', 'destroy']);
+Route::group(['namespace' => 'Blog'], function () {
+    Route::get('/', 'PostController@index')->name('main');
+    Route::get('post/{slug}','PostController@show')->name('post');
+    Route::get('archive/{date}','PostController@archive')->name('archive');
+    Route::resource('comment', 'BlogCommentController')->only(['create', 'destroy']);
+});
 
 Route::group(['namespace' => 'Blog', 'prefix' => 'tag'],function () {
     Route::get('{slug}', 'CategoryController@show');
@@ -26,5 +27,3 @@ Route::group(['namespace' => 'Blog', 'prefix' => 'tag'],function () {
 ////});
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
