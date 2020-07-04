@@ -9,4 +9,21 @@
         {{ $post->content }}
     </div>
 </div><!-- /.blog-post -->
+<form action="">
+    @csrf
+    <div class="form-group row">
+        <label for="inputName">Введите имя</label>
+        <input type="name"
+               class="form-control"
+               id="inputName"
+                value="@guest{{ 'Гость' }}@else{{ Auth::user()->name }}@endguest">
+    </div>
+    <div class="form-group row">
+        <label for="formTextarea">Текст комментария</label>
+        <textarea class="form-control" id="formTextarea" rows="3"></textarea>
+    </div>
+    <div class="form-group row">
+        <button type="submit" class="btn btn-primary mb-2">Отправить</button>
+    </div>
+</form>
 @endsection

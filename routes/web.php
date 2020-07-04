@@ -14,6 +14,7 @@ Route::get('/', 'Blog\PostController@index')->name('main');
 
 Route::get('post/{slug}','Blog\PostController@show')->name('post');
 Route::get('archive/{date}','Blog\PostController@archive')->name('archive');
+Route::resource('comment', 'Blog\BlogCommentController')->only(['create', 'destroy']);
 
 Route::group(['namespace' => 'Blog', 'prefix' => 'tag'],function () {
     Route::get('{slug}', 'CategoryController@show');
