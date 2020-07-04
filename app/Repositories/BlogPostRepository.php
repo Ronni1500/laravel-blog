@@ -60,7 +60,14 @@ class BlogPostRepository extends CoreRepository
         $items = $this->startConditions()
             ->where(['slug' => $slug])
             ->get()->first();
+        $this->addViews($items->id);
         return $items;
+    }
+    public function addViews(int $id)
+    {
+        $this->startConditions()
+            ->find($id)
+            ->increment('views');
     }
 
     /**
